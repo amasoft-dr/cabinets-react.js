@@ -17,7 +17,7 @@ can be available to any react component.
 to get all actions, to fire an action, to fire lazy actions, to get the state and even subscribe
 to state notifications.
 
-##Let's code
+## Let's code
 
 1. First thing is to define your store/stores.
 
