@@ -534,8 +534,9 @@ Already we saw how Maps works, [Check here](https://github.com/amasoft-dr/cabine
 
 Only need to be said that you can have a **def** mapper that will
 be used for each opearation/action that does not have a map function.
-It's like if you defined a **def** mapper it will take all values 
-
+It's like if you defined a **def** mapper it will catch all payload
+from all actions prior to be passed to the reducer, so transformation
+can be done.
 
 
 ### Interceptors: Executing code after mappings is done an prior reducer is called
