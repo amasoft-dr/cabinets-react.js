@@ -531,7 +531,7 @@ export default function Comment(props){
 ```
 
 ## Maps: Changing payload prior to execute reducers
-Already we saw how Maps works, check here.
+Already we saw how Maps works, [Check here](https://github.com/amasoft-dr/cabinets-react.js/blob/main/README.md#registering-more-than-2-stores)
 
 Only need to be said that you can have a **def** mapper that will
 be used for each opearation/action that does not have a map function.
