@@ -1,9 +1,9 @@
-# Cabinets-react.js the simplest Global State Management for React.js
-## Cabinets-react.js It's a binding to use Cabinets.js in modern React.js
+## Cabinets-react.js the simplest Global State Management for React.js
+### Cabinets-react.js It's a binding to use Cabinets.js in modern React.js
 
 Please, feel free to explore [Cabinets.js](https://github.com/amasoft-dr/cabinets.js) the original library.
 
-## Managing Global State in React using Cabinets
+### Managing Global State in React using Cabinets
 
 Cabinets-react.js is a binding of Cabinets.js library to be used in React.js in an easy
 In and fun way, you don't need to configure anything.
@@ -17,7 +17,7 @@ can be available to any react component.
 to get all actions, to fire an action, to fire lazy actions, to get the state and even subscribe
 to state notifications.
 
-## Let's code
+### Let's code
 
 1. First thing is to define your store/stores.
 
@@ -163,7 +163,7 @@ render(<App />, document.querySelector("#react-root") );
 
 -2. Every time users click the increment or decrement button, all components that subscribe to that store wil be re-rendered.(By default a component get subscribed just using *useStoreHook*)
 
-## Registering more than 2 Stores
+### Registering more than 2 Stores
 
 There are times that you want to use more than 1 store, probably to manage some states
 independently from each other, or because you want to combine them.
@@ -313,7 +313,7 @@ So you could see, every time a new comment is added  only the **Comments** Comp
 and every time the **counter** increased or decreased both, **Counter** and **CounterMessage** will
 be rendered.
 
-## Combining multiple smalls Stores as one single fat Store.
+### Combining multiple smalls Stores as one single fat Store.
 
 Sometimes is a good idea to have small stores in different files and later on
 combined them all as one big fat stores.
@@ -530,7 +530,7 @@ export default function Comment(props){
 
 ```
 
-## Maps: Changing payload prior to execute reducers
+### Maps: Changing payload prior to execute reducers
 Already we saw how Maps works, [Check here](https://github.com/amasoft-dr/cabinets-react.js/blob/main/README.md#registering-more-than-2-stores)
 
 Only need to be said that you can have a **def** mapper that will
@@ -539,10 +539,10 @@ It's like if you defined a **def** mapper it will take all values
 
 
 
-## Interceptors: Executing code after mappings is done an prior reducer is called
+### Interceptors: Executing code after mappings is done an prior reducer is called
 Todo...
 
 
 
-## Lazy Actions: Modifying your store in an async away
+### Lazy Actions: Modifying your store in an async away
 Todo...
