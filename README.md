@@ -44,7 +44,7 @@ export counterStore;
 
 Let's use **StateProvider** component to register this store.
 
-```jsx
+```JSX
 import React from "react"; //Not required for React +17
 import {render} from "react-dom";
 //#1
@@ -77,7 +77,7 @@ render(<App />, document.querySelector("#react-root") );
 
 Let's see the code for **Counter.js** component.
 
-```jsx
+```JSX
 import React from "react"; //Not required from React +17
 //#1
 import {useStoreHook} from "cabinets-react";
@@ -107,7 +107,7 @@ So, let's create another component, called **CounterMessage** basically, it will
 
 File **CounterMessage.js**
 
-```jsx
+```JSX
 import React from "react"; //Not required from React +17
 //#1
 import {useStoreHook} from "cabinets-react";
@@ -135,7 +135,7 @@ Now let's see how we can change the state triggering actions from one component 
 another component to re-render because of state change.
 
 
-```jsx
+```JSX
 import React from "react"; //Not required for React +17
 import {render} from "react-dom";
 import {StateProvider} from "cabinets-react";
@@ -226,7 +226,7 @@ to a the **<StateProvider />** component.
 Let's code:
 
 
-```jsx
+```JSX
 import React from "react"; //Not required for React +17
 import {render} from "react-dom";
 import {StateProvider} from "cabinets-react";
@@ -256,7 +256,7 @@ render(<App />, document.querySelector("#react-root") );
 **Comments.js** file
 
 
-```jsx
+```JSX
 import React,{useState} from "react"; //Not required from React +17
 import {useStoreHook} from "cabinets-react";
 import Comment from "./Comment.js";
@@ -288,7 +288,7 @@ export default function Comments(){
 ```
 **Comment.js** file
 
-```jsx
+```JSX
 import React from "react"; //Not required from React +17
 
 export default function Comment(props){
@@ -395,7 +395,7 @@ export commentsStore;
 ```
 Now let's combine them in the **App.js** file
 
-```jsx
+```JSX
 import React from "react"; //Not required for React +17
 import {render} from "react-dom";
 import {StateProvider} from "cabinets-react";
@@ -427,7 +427,7 @@ that this is good)
 
 File **Counter.js**
 
-```jsx
+```JSX
 import React from "react"; //Not required from React +17
 //#1
 import {useStoreHook} from "cabinets-react";
@@ -448,7 +448,7 @@ export default function Counter(){
 
 File **CounterMessage.js**
 
-```jsx
+```JSX
 import React from "react"; //Not required from React +17
 //#1
 import {useStoreHook} from "cabinets-react";
@@ -476,8 +476,7 @@ export default function CounterMessage(){
 
 **Comments.js** file
 
-
-```jsx
+```JSX
 import React,{useState} from "react"; //Not required from React +17
 import {useStoreHook} from "cabinets-react";
 import Comment from "./Comment.js";
@@ -506,7 +505,7 @@ export default function Comments(){
     </>);
 }
 
-```
+```JSX
 **Comment.js** file remain same, no changes at all.
 
 ```jsx
