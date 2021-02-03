@@ -1,4 +1,4 @@
-# Cabinets-react.js the simplest Application State Management for React.js
+# Cabinets-react.js the simplest Global State Management for React.js
 ## Cabinets-react.js It's a binding to use Cabinets.js in modern React.js
 
 Please, feel free to explore [Cabinets.js](https://github.com/amasoft-dr/cabinets.js) the original library.
