@@ -1,0 +1,26 @@
+{
+  "name": "cabinets-react",
+  "version": "1.0.0",
+  "description": "Cabinets-react is the simplest Global State Management for React.js",
+  "main": "module.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreidim/cabinets-react.js.git"
+  },
+  "keywords": [
+    "react",
+    "react-state",
+    "simple-react-state",
+    "simple-react-global-store",
+    "react-global-state"
+  ],
+  "author": "Amasoft",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andreidim/cabinets-react.js/issues"
+  },
+  "homepage": "https://github.com/andreidim/cabinets-react.js#readme"
+}
