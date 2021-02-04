@@ -1,6 +1,6 @@
 {
   "name": "cabinets-react",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Cabinets-react is the simplest Global State Management for React.js",
   "main": "lib/module.js",
   "scripts": {
@@ -24,10 +24,8 @@
   },
   "homepage": "https://github.com/andreidim/cabinets-react.js#readme",
   "dependencies": {
+    "@babel/core": "^7.12.13",
     "cabinets": "^1.0.0",
     "react": "^17.0.1"
-  },
-  "devDependencies": {
-    "@babel/plugin-syntax-jsx": "^7.12.13"
   }
 }
