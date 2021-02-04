@@ -1,6 +1,6 @@
 {
   "name": "cabinets-react",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Cabinets-react is the simplest Global State Management for React.js",
   "main": "lib/module.js",
   "scripts": {
