@@ -212,8 +212,7 @@ export {counterStore, commentsStore};
 
 The **AppStores.js** file export 2 stores, one four counting and the other to store comments.
 
-Important note about the comment Store:
-
+##### Important note about the comment Store
 
 1-The *commentStore* defines two operations: **comment** and **removeComment**, also
 defines a **map** for comment operation, meaning, it will transform the payload from simple
@@ -532,7 +531,7 @@ export default function Comment(props){
 ```
 
 ### Maps: Transforming payload prior to execute reducers
-Already we saw how Maps works, [Check here](https://github.com/amasoft-dr/cabinets-react.js/blob/main/README.md#registering-more-than-2-stores)
+Already we saw how Maps works, [Check here](#important_note_about_the_comment_Store)
 
 Only need to be said that you can have a **def** mapper that will
 be used for each opearation/action that does not have a map function.
