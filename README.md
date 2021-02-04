@@ -87,8 +87,8 @@ export default function Counter(){
     
     return(<>
       <h3>Current Value: {getState()} </h3>
-      <button onClick={(e)=>{ fire(actions.increment(1)'; e.preventDefault(); } >Increment by 1</button>
-      <button  onClick={(e)=>{ fire(actions.decrement(1)'; e.preventDefault(); } >Decrement by 1</button>
+      <button onClick={(e)=>{ fire(actions.increment(1); e.preventDefault(); } >Increment by 1</button>
+      <button  onClick={(e)=>{ fire(actions.decrement(1); e.preventDefault(); } >Decrement by 1</button>
     </>);
 }
 
