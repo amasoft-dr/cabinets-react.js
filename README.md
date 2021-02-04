@@ -268,7 +268,7 @@ export default function Comments(){
     return(<>
        <h3>Please leave your comment anonymously </h3>
        
-       <form onSubmit={()=> fire(actions.comment(commentMsg) } >
+       <form onSubmit={()=> fire(actions.comment(commentMsg) ) } >
          <label htmlFor="comment">Leave a comment</label>
          <input type="text" name="comment" onChange={(e)=> setCommentMsg() } />
          <hr/>
