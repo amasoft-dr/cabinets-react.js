@@ -531,7 +531,7 @@ export default function Comment(props){
 ```
 
 ### Maps: Transforming payload prior to execute reducers
-Already we saw how Maps works, [Check here](#important_note_about_the_comment_Store)
+Already we saw how Maps works, [Check here](#important_note_about_the_comment_store)
 
 Only need to be said that you can have a **def** mapper that will
 be used for each opearation/action that does not have a map function.
