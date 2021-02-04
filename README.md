@@ -117,7 +117,7 @@ export default function CounterMessage(){
     
     return(<>
     
-      {getState() > 100 && <h1> We have {getState() } clicks we are getting rich </h1>
+      {getState() > 100 && <h1> We have {getState() } clicks we are getting rich </h1> }
       
       {getState() > 50 &&  getState() < 99 && <h1>Keep going, we have only {getState() } I want more clicks </h1> }
       
@@ -460,7 +460,7 @@ export default function CounterMessage(){
     
     return(<>
     
-      {getState().counter > 100 && <h1> We have {getState().counter } clicks we are getting rich </h1>
+      {getState().counter > 100 && <h1> We have {getState().counter } clicks we are getting rich </h1> }
       
       {getState().counter > 50 &&  getState().counter < 99 && <h1>Keep going, we have only {getState().counter } I want more clicks </h1> }
       
