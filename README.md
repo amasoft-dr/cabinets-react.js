@@ -507,7 +507,7 @@ export default function Comments(){
     
     </>);
 }
-
+```
 
 **Comment.js** file remain same, no changes at all.
 ```JSX
