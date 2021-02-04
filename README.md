@@ -491,7 +491,7 @@ export default function Comments(){
     return(<>
        <h3>Please leave your comment anonymously </h3>
        
-       <form onSubmit={()=> fire(actions.comment(commentMsg) } >
+       <form onSubmit={()=> fire(actions.comment(commentMsg) )} >
          <label htmlFor="comment">Leave a comment</label>
          <input type="text" name="comment" onChange={(e)=> setCommentMsg() } />
          <hr/>
@@ -499,9 +499,10 @@ export default function Comments(){
        </form>
        
        <h2>Comments</h2>
-       { getState().comments.map(comment => <Comment comment={comment}
-                                    onDelete={ ()=>fire(actions.removeComment(comment.id) ) } />
-                       ) 
+       { getState()
+               .comments
+                     .map(comment => <Comment comment={comment}
+                                       onDelete={ ()=>fire(actions.removeComment(comment.id) ) } />  ) 
        }      
     
     </>);
@@ -531,7 +532,7 @@ export default function Comment(props){
 ```
 
 ### Maps: Transforming payload prior to execute reducers
-Already we saw how Maps works, [Check here](#important-note-about-the-comment-store)
+Already we saw how Maps works, [Check here](#important-note-about-the-comment-store-maps)
 
 Only need to be said that you can have a **def** mapper that will
 be used for each opearation/action that does not have a map function.
