@@ -270,15 +270,15 @@ export default function Comments(){
        
        <form onSubmit={()=> fire(actions.comment(commentMsg) ) } >
          <label htmlFor="comment">Leave a comment</label>
-         <input type="text" name="comment" onChange={(e)=> setCommentMsg() } />
+         <input type="text" name="comment" onChange={(e)=> setCommentMsg(e.target.value) } />
          <hr/>
          <submit>Publish</submit>
        </form>
        
        <h2>Comments</h2>
-       { getState().map(comment => <Comment comment={comment}
-                                    onDelete={ ()=>fire(actions.removeComment(comment.id) ) } />
-                       ) 
+       { getState()
+               .map(comment => <Comment comment={comment}
+                                 onDelete={ ()=>fire(actions.removeComment(comment.id) ) } />  ) 
        }      
     
     </>);
@@ -493,7 +493,7 @@ export default function Comments(){
        
        <form onSubmit={()=> fire(actions.comment(commentMsg) )} >
          <label htmlFor="comment">Leave a comment</label>
-         <input type="text" name="comment" onChange={(e)=> setCommentMsg() } />
+         <input type="text" name="comment" onChange={(e)=> setCommentMsg(e.target.value) } />
          <hr/>
          <submit>Publish</submit>
        </form>
