@@ -321,13 +321,13 @@ combined them all as one big fat stores.
 Let's see some advantages:
 
 -1. It helps you to distribute development work, you can assign different 
-    substores to different developers, god bye merging conflicts!
+    substores to different developers. Say god bye merging conflicts!
     
     
 -2. Help you with code maintainability, They are easier to write, to read, and to test. You avoid
     the problem to code one Big App Store with a lot of operations, reducer, mappings, 
     interceptors, lazy operations...forget about Big Store with thousands of line of 
-    code that cannot be edited but more than one developer at the same time.
+    codes that cannot be edited by more than one developer at the same time.
     
     
 -3. You gain access to all substores that are part of this combined-store. When using multiple independent
