@@ -212,7 +212,7 @@ export {counterStore, commentsStore};
 
 The **AppStores.js** file export 2 stores, one four counting and the other to store comments.
 
-##### Important note about the comment Store
+##### Important note about the comment Store: Maps
 
 1-The *commentStore* defines two operations: **comment** and **removeComment**, also
 defines a **map** for comment operation, meaning, it will transform the payload from simple
