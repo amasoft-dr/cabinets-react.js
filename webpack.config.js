@@ -4,7 +4,7 @@ module.exports = {
   mode: 'production',
   entry: './src/module.js',
   output: {
-    path: path.resolve('dist'),
+    path: path.resolve('lib'),
     filename: 'module.js',
     libraryTarget: 'commonjs2',
   },
