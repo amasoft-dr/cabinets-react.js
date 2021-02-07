@@ -2,9 +2,12 @@
   "name": "cabinets-react",
   "version": "1.0.10",
   "description": "Cabinets-react is the simplest Global State Management for React.js",
-  "main": "lib/module.js",
+  "main": "src/module.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack --mode production",
+    "prepublish": "npm run build"
+
   },
   "repository": {
     "type": "git",
@@ -27,6 +30,10 @@
     "cabinets": "^1.0.0"
   },
   "devDependencies": {
-    "react": "^17.0.1"
+    "@babel/core": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "react": "^17.0.1",
+    "webpack": "^5.21.1",
+    "webpack-cli": "^4.5.0"
   }
 }
