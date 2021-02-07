@@ -10,6 +10,7 @@ class CabinetsReactError extends Error {
 }
 
 export default function StateProvider(props) {
+    
     const { store, stores, combine = false, combinedName } = props;
 
     useEffect(() => {
