@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/andreidim/cabinets-react.js#readme",
   "dependencies": {
-    "cabinets": "^1.0.0"
+    "cabinets": "^1.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",

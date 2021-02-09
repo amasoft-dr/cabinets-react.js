@@ -1,6 +1,9 @@
 import { useStoreHook, StateProvider } from "../src/module.js";
 import React from "react";
-import renderer from 'react-test-renderer';
+import TestRenderer from 'react-test-renderer';
+
+
+const { act } = TestRenderer;
 
 const counterStore = {
     name: "counter",
@@ -11,7 +14,10 @@ const counterStore = {
     }
 }
 test('adds 1 + 2 to equal 3', () => {
-    const el = renderer.create(<StateProvider store={counterStore} /> );
-    //const store = useStoreHook("counter");
-    expect(1).toBe(1);
+    let renderer;
+    act(() => {
+        renderer = TestRenderer.create(<StateProvider store={counterStore} />);
+    });
+  
+    expect(store.getState()).toBe(0);
 });
