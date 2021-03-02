@@ -36,6 +36,7 @@ const counterStore = {
     operations: {
         increment: (state, payload) => state + payload,
         decrement: (state, payload) => state - payload
+    }
 }
 
 export counterStore;
