@@ -15,7 +15,6 @@ export default function StateProvider(props) {
 
     useEffect(() => {
         try {
-             console.log(store);
              if (!stores && !store)
                 throw new CabinetsReactError("Error a store or stores must be specified");
 
@@ -37,7 +36,7 @@ export default function StateProvider(props) {
                 combineStores(...setupStores);
             }
         } catch (e) {
-            console.log(e);
+            console.error(e);
             throw new CabinetsReactError("Error while resgestering Cabinets Stores", e);
         }
 
