@@ -1,31 +1,34 @@
-## Cabinets-react.js the simplest Global State Management for React.js
+## Cabinets-react.js is the simplest Global State Management for React.js
 ### Cabinets-react.js It's a binding to use Cabinets.js in modern React.js
 
 Please, feel free to explore [Cabinets.js](https://github.com/amasoft-dr/cabinets.js) the original library.
 
 ### Managing Global State in React using Cabinets
 
-Cabinets-react.js is a binding of Cabinets.js library to be used in React.js in an easy
-In and fun way, you don't need to configure anything.
+Cabinets-react.js is a react state management library that is designed with simplicity in mind
+you don't need to configure anything, just add the dependency to your project and start using it!.
 
-Cabinets-react.js module just define 1 hook and one react component:
+```bash
+npm i cabinets-react
+```
+Cabinets-react.js module just define one hook and one react component:
 
 1. **StateProvider** Component allows you to add and configure your Stores so they 
 can be available to any react component.
 
-2. **useStoreHook** a hook that allows you to use an store and get important functions
-to get all actions, to fire an action, to fire lazy actions, to get the state and even subscribe
+2. **useStoreHook** a hook that allows you to use a store and get important functions
+to retrieve all actions, to fire an action, to fire lazy actions, to get the state, and even subscribe
 to state notifications.
 
 ### Let's code
 
-1. First thing is to define your store/stores.
+First thing is to define your store/stores.
 
-There are two ways to setup your stores
+There are two ways to set up your stores
 
--First the **Cabinets.js** standard way, please [click here for more details](https://github.com/amasoft-dr/cabinets.js/blob/main/README.md#lets-code)
+1. The **Cabinets.js** standard way, please [click here for more details](https://github.com/amasoft-dr/cabinets.js/blob/main/README.md#lets-code)
 
--The **Cabinets-react.js** way, let's see it:
+2. The **Cabinets-react.js** way, let's see it:
 
 file: **CounterStore.js**
 ```javascript
@@ -36,6 +39,7 @@ const counterStore = {
     operations: {
         increment: (state, payload) => state + payload,
         decrement: (state, payload) => state - payload
+    }
 }
 
 export counterStore;
@@ -67,12 +71,11 @@ function App(){
 render(<App />, document.querySelector("#react-root") );
 ```
 
-1.- Importing **StateProvider** from *cabinets-react*. Now all your components
-    has access to the *counterStore*.
+1. Importing **StateProvider** from *cabinets-react*. Now all your components have access to the *counterStore*.
 
-2.- Importing the *counterStore* The store we created for this example.
+2. Importing the *counterStore* The store we created for this example.
 
-3.- Importing the component that uses Cabinets to store its Global State.
+3. Importing the component that uses Cabinets to store its Global State.
 
 
 Let's see the code for **Counter.js** component.
@@ -83,21 +86,26 @@ import React from "react"; //Not required from React +17
 import {useStoreHook} from "cabinets-react";
 
 export default function Counter(){
+
     const {fire, actions, getState} = useStoreHook("counterStore");
     
     return(<>
-      <h3>Current Value: {getState()} </h3>
-      <button onClick={(e)=>{ fire(actions.increment(1) ); e.preventDefault(); } } >Increment by 1</button>
-      <button  onClick={(e)=>{ fire(actions.decrement(1) ); e.preventDefault(); }} >Decrement by 1</button>
+          <h3>Current Value: {getState()} </h3>
+          <button onClick={(e)=>{ fire(actions.increment(1) ); e.preventDefault(); } } >Increment by 1</button>
+          <button  onClick={(e)=>{ fire(actions.decrement(1) ); e.preventDefault(); }} >Decrement by 1</button>
     </>);
 }
 
 
 ```
 
--1. Importing the *useStoreHook* it is a hook that returns a store. It takes another argument
-*deps*, which is an array of property names, so you can subscribe when these properties change
-in this case, hence we are using basic values we don't need to specify any dependency. (We'll see an example later on)
+1. *useStoreHook* is a hook that returns a store. It takes another argument
+*deps* which is optional, an array of property names. If no *deps* are specified
+then every time Object mutates, **cabinets-react** will notify react to re-render the component.
+When *deps* are specified, then **cabinets-react** will only notify when those particular object's properties
+has changed, this is particularly useful when you combined multiple stores as you'll see later.
+
+ For this example we are using basic values we don't need to specify any dependency. (We'll see an example later on)
 
 Now you can see the **Counter** Component using and triggering actions that will update the state what
 will provoke component re-rendering.
@@ -113,6 +121,7 @@ import React from "react"; //Not required from React +17
 import {useStoreHook} from "cabinets-react";
 
 export default function CounterMessage(){
+    
     const {getState} = useStoreHook("counterStore");
     
     return(<>
@@ -159,9 +168,9 @@ render(<App />, document.querySelector("#react-root") );
 
 ```
 
--1. Every time *counterStore* changes, the *CounterMessage* component will be re-render.
+1. Every time *counterStore* changes, the *CounterMessage* component will be re-render.
 
--2. Every time users click the increment or decrement button, all components that subscribe to that store wil be re-rendered.(By default a component get subscribed just using *useStoreHook*)
+2. Every time users click the increment or decrement button, all components that subscribe to that store will be re-rendered. (By default a component get subscribed just using *useStoreHook*)
 
 ### Registering more than 2 Stores
 
@@ -214,7 +223,7 @@ The **AppStores.js** file export 2 stores, one four counting and the other to s
 
 ##### Important note about the comment Store: Maps
 
-1-The *commentStore* defines two operations: **comment** and **removeComment**, also
+1. The *commentStore* defines two operations: **comment** and **removeComment**, also
 defines a **map** for comment operation, meaning, it will transform the payload from simple
 String to a **comment** object which contains: **comment, id and date** prior to being passed to the 
 reducer(**The function that is associated with the action comment**).
@@ -261,6 +270,7 @@ import {useStoreHook} from "cabinets-react";
 import Comment from "./Comment.js";
 
 export default function Comments(){
+    
     const {fire, actions,getState} = useStoreHook("commentsStore");
     const {commentMsg, setCommentMsg} = useState();
     
@@ -278,7 +288,7 @@ export default function Comments(){
        <h2>Comments</h2>
        { getState()
                .map(comment => <Comment comment={comment}
-                                 onDelete={ ()=>fire(actions.removeComment(comment.id) ) } />  ) 
+                                 onDelete={ ()=>fire(actions.removeComment(comment.id) ) } /> 
        }      
     
     </>);
@@ -315,29 +325,28 @@ be rendered.
 ### Combining multiple smalls Stores as one single fat Store.
 
 Sometimes is a good idea to have small stores in different files and later on
-combined them all as one big fat stores.
+combined them all as one big fat store.
 
 Let's see some advantages:
 
--1. It helps you to distribute development work, you can assign different 
-    substores to different developers. Say god bye merging conflicts!
+1. It helps you to distribute development work, you can assign different substores to different developers. Say god bye merging conflicts!
     
     
--2. Help you with code maintainability, They are easier to write, to read, and to test. You avoid
+2. Help you with code maintainability, They are easier to write, read, and test. You avoid
     the problem to code one Big App Store with a lot of operations, reducer, mappings, 
     interceptors, lazy operations...forget about Big Store with thousands of line of 
     codes that cannot be edited by more than one developer at the same time.
     
     
--3. You gain access to all substores that are part of this combined-store. When using multiple independent
+3. You gain access to all substores that are part of this combined-store. When using multiple independent
     stores you cannot access other independent stores data, with combined stores, you can access and even 
     fire state changes of all other substores that are combined.
     
 
 For deeper information about combining stores please check [how Cabinets.js combines multiple stores](https://github.com/amasoft-dr/cabinets.js/blob/main/README.md#combining-stores).
 
-***Note**: Is a valid way to setup your store using Cabinets.js standard way, also combined them, but it is preferible 
-when using react to use **<StateProvider />** Component to setup and combine your stores.*
+***Note**: Is a valid way to set up your store using Cabinets.js standard way, also combined them, but it is preferable 
+when using react to use **<StateProvider />** Component to set up and combine your stores.*
 
 **So, enough theory, let's code!**
 
@@ -409,7 +418,7 @@ function App(){
   
   return(<>
   /*#1*/
-   <StateProvider stores={[counterStore, commentStore]} combine={true} combineName="appStore" />
+   <StateProvider stores={[counterStore, commentStore]} combine={true} combinedName="appStore" />
    <CounterMessage />
    <Counter />
    <Comments />
@@ -420,11 +429,11 @@ function App(){
 render(<App />, document.querySelector("#react-root") );
 
 ```
-Now, **CounterMessage,Counter and Comments**  needs to be updated
+Now, **CounterMessage,Counter, and Comments**  needs to be updated
 so they access to their specific substore and in this case
 that those stores are not very much related we want to keep
 subscription separated from each other, meaning, one change on counter
-does not trigger notifucation for Comments re-rendering. (However, there a times
+does not trigger a notification for Comments re-rendering. (However, there a times
 that this is good)
 
 File **Counter.js**
@@ -435,6 +444,7 @@ import React from "react"; //Not required from React +17
 import {useStoreHook} from "cabinets-react";
 
 export default function Counter(){
+
     const {fire, actions, getState} = useStoreHook("appStore");
     
     return(<>
@@ -456,6 +466,7 @@ import React from "react"; //Not required from React +17
 import {useStoreHook} from "cabinets-react";
 
 export default function CounterMessage(){
+
     const {getState} = useStoreHook("appStore");
     
     return(<>
@@ -484,11 +495,13 @@ import {useStoreHook} from "cabinets-react";
 import Comment from "./Comment.js";
 
 export default function Comments(){
+
     const {fire, actions,getState} = useStoreHook("appStore");
     const {commentMsg, setCommentMsg} = useState();
     
     
     return(<>
+
        <h3>Please leave your comment anonymously </h3>
        
        <form onSubmit={()=> fire(actions.comment(commentMsg) )} >
@@ -509,11 +522,12 @@ export default function Comments(){
 }
 ```
 
-**Comment.js** file remain same, no changes at all.
+**Comment.js** file remains the same, no changes at all.
 ```JSX
 import React from "react"; //Not required from React +17
 
 export default function Comment(props){
+    
     const {comment} = props;
     
     return(<>
@@ -531,17 +545,17 @@ export default function Comment(props){
 
 ```
 
-### Maps: Transforming payload prior to execute reducers
+### Maps: Transforming payload prior to executing reducers
 Already we saw how Maps works, [Check here](#important-note-about-the-comment-store-maps)
 
 Only need to be said that you can have a **def** mapper that will
-be used for each opearation/action that does not have a map function.
+be used for each operation/action that does not have a map function.
 It's like if you defined a **def** mapper it will catch all payload
-from all actions prior to be passed to the reducer, so transformation
+from all actions prior to being passed to the reducer, so the transformation
 can be done.
 
 
-### Interceptors: Executing code after mappings is done an prior reducer is called
+### Interceptors: Executing code after mappings are done  prior reducer is called
 Todo...
 
 
