@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useStore } from "cabinets";
+import { useStore } from "kabinets";
 import StateProvider from "./StateProvider.js";
  
 
-class CabinetsReactError extends Error {
+class KabinetsReactError extends Error {
     constructor(msg, error="") {
         super(msg);
-        this.name = "CabinetsReactError";
+        this.name = "KabinetsReactError";
         this.message +=  error;
     }
 }
@@ -29,4 +29,4 @@ function useStoreHook(storeName, deps) {
   return { actions, lazyActions, fire, lazyFire, getState, subscribe };
 }
 
-export {useStoreHook, StateProvider, CabinetsReactError};
+export {useStoreHook, StateProvider, KabinetsReactError}; 

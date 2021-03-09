@@ -2,10 +2,10 @@ import React from "react";
 import { mount } from 'enzyme';
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { StateProvider, CabinetsReactError } from "../src/module.js";
+import { StateProvider, KabinetsReactError } from "../src/module.js";
 import { counterStore } from "./CounterStore.js";
 import { commentsStore, commentsStore2 } from "./CommentsStore.js";
-import { useStore } from "cabinets";
+import { useStore } from "kabinets";
 import Counter from "./Counter.js";
 import Counter2 from "./Counter2.js";
 import Comments from "./Comments.js";
@@ -100,9 +100,9 @@ it("Verifies StateProvider Errors", () => {
         mount(<StateProvider stores={[counterStore, commentsStore]} combine={true} />);
     };
     
-    expect(t).toThrow(CabinetsReactError);
-    expect(t2).toThrow(CabinetsReactError);
-    expect(t3).toThrow(CabinetsReactError);
+    expect(t).toThrow(KabinetsReactError);
+    expect(t2).toThrow(KabinetsReactError);
+    expect(t3).toThrow(KabinetsReactError);
 
 })
 

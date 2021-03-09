@@ -1,17 +1,17 @@
-## Cabinets-react.js is the simplest Global State Management for React.js
-### Cabinets-react.js It's a binding to use Cabinets.js in modern React.js
+## Kabinets-react.js is the simplest Global State Management for React.js
+### Kabinets-react.js It's a binding to use kabinets.js in modern React.js
 
-Please, feel free to explore [Cabinets.js](https://github.com/amasoft-dr/cabinets.js) the original library.
+Please, feel free to explore [kabinets.js](https://github.com/amasoft-dr/kabinets.js) the original library.
 
-### Managing Global State in React using Cabinets
+### Managing Global State in React using kabinets
 
-Cabinets-react.js is a react state management library that is designed with simplicity in mind
+Kabinets-react.js is a react state management library that is designed with simplicity in mind
 you don't need to configure anything, just add the dependency to your project and start using it!.
 
 ```bash
-npm i cabinets-react
+npm i kabinets-react
 ```
-Cabinets-react.js module just define one hook and one react component:
+Kabinets-react.js module just define one hook and one react component:
 
 1. **StateProvider** Component allows you to add and configure your Stores so they 
 can be available to any react component.
@@ -26,9 +26,9 @@ First thing is to define your store/stores.
 
 There are two ways to set up your stores
 
-1. The **Cabinets.js** standard way, please [click here for more details](https://github.com/amasoft-dr/cabinets.js/blob/main/README.md#lets-code)
+1. The **kabinets.js** standard way, please [click here for more details](https://github.com/amasoft-dr/kabinets.js/blob/main/README.md#lets-code)
 
-2. The **Cabinets-react.js** way, let's see it:
+2. The **kabinets-react.js** way, let's see it:
 
 file: **CounterStore.js**
 ```javascript
@@ -52,7 +52,7 @@ Let's use **StateProvider** component to register this store.
 import React from "react"; //Not required for React +17
 import {render} from "react-dom";
 //#1
-import {StateProvider} from "cabinets-react";
+import {StateProvider} from "kabinets-react";
 //#2
 import {counterStore} from "./CounterStore.js";
 //#3
@@ -71,11 +71,11 @@ function App(){
 render(<App />, document.querySelector("#react-root") );
 ```
 
-1. Importing **StateProvider** from *cabinets-react*. Now all your components have access to the *counterStore*.
+1. Importing **StateProvider** from *kabinets-react*. Now all your components have access to the *counterStore*.
 
 2. Importing the *counterStore* The store we created for this example.
 
-3. Importing the component that uses Cabinets to store its Global State.
+3. Importing the component that uses kabinets to store its Global State.
 
 
 Let's see the code for **Counter.js** component.
@@ -83,7 +83,7 @@ Let's see the code for **Counter.js** component.
 ```JSX
 import React from "react"; //Not required from React +17
 //#1
-import {useStoreHook} from "cabinets-react";
+import {useStoreHook} from "kabinets-react";
 
 export default function Counter(){
 
@@ -101,8 +101,8 @@ export default function Counter(){
 
 1. *useStoreHook* is a hook that returns a store. It takes another argument
 *deps* which is optional, an array of property names. If no *deps* are specified
-then every time Object mutates, **cabinets-react** will notify react to re-render the component.
-When *deps* are specified, then **cabinets-react** will only notify when those particular object's properties
+then every time Object mutates, **kabinets-react** will notify react to re-render the component.
+When *deps* are specified, then **kabinets-react** will only notify when those particular object's properties
 has changed, this is particularly useful when you combined multiple stores as you'll see later.
 
  For this example we are using basic values we don't need to specify any dependency. (We'll see an example later on)
@@ -117,7 +117,7 @@ File **CounterMessage.js**
 
 ```JSX
 import React from "react";
-import { useStoreHook } from "cabinets-react";
+import { useStoreHook } from "kabinets-react";
  
 export default function CounterMessage() {
   //#1
@@ -146,7 +146,7 @@ another component to re-render because of state change.
 ```JSX
 import React from "react"; //Not required for React +17
 import {render} from "react-dom";
-import {StateProvider} from "cabinets-react";
+import {StateProvider} from "kabinets-react";
 import {counterStore} from "./CounterStore.js";
 import Counter from "./Counter.js";
 import CounterMessage from "./CounterMessage.js";
@@ -176,9 +176,9 @@ render(<App />, document.querySelector("#react-root") );
 There are times that you want to use more than 1 store, probably to manage some states
 independently from each other, or because you want to combine them.
 
-**Cabinets-react** support an easy way to register more than one state, or even combine them. Please, see how *Cabinets.js*: [ handle multiple stores in Cabinets]( https://github.com/amasoft-dr/cabinets.js#using-multiple-stores).
+**kabinets-react** support an easy way to register more than one state, or even combine them. Please, see how *kabinets.js*: [ handle multiple stores in kabinets]( https://github.com/amasoft-dr/kabinets.js#using-multiple-stores).
 
-**Cabinets-react.js** makes easier how to set up multiple stores and how to combine them than **Cabinets.js**.
+**kabinets-react.js** makes easier how to set up multiple stores and how to combine them than **kabinets.js**.
 
 Let's say we want to store our anonymous comments and have a counter in our application.
 
@@ -236,7 +236,7 @@ Let's code:
 ```JSX
 import React from "react"; //Not required for React +17
 import {render} from "react-dom";
-import {StateProvider} from "cabinets-react";
+import {StateProvider} from "kabinets-react";
 import {counterStore, commentStore } from "./AppStores.js";
 import Counter from "./Counter.js";
 import Comments from "./Comments.js";
@@ -265,7 +265,7 @@ render(<App />, document.querySelector("#react-root") );
 
 ```JSX
 import React, { useState } from "react"; //Not required from React +17
-import { useStoreHook } from "cabinets-react";
+import { useStoreHook } from "kabinets-react";
 import Comment from "./Comment.js";
 
 export default function Comments() {
@@ -340,9 +340,9 @@ Let's see some advantages:
     fire state changes of all other substores that are combined.
     
 
-For deeper information about combining stores please check [how Cabinets.js combines multiple stores](https://github.com/amasoft-dr/cabinets.js/blob/main/README.md#combining-stores).
+For deeper information about combining stores please check [how kabinets.js combines multiple stores](https://github.com/amasoft-dr/kabinets.js/blob/main/README.md#combining-stores).
 
-***Note**: Is a valid way to set up your store using Cabinets.js standard way, also combined them, but it is preferable 
+***Note**: Is a valid way to set up your store using kabinets.js standard way, also combined them, but it is preferable 
 when using react to use **<StateProvider />** Component to set up and combine your stores.*
 
 **So, enough theory, let's code!**
@@ -405,7 +405,7 @@ Now let's combine them in the **App.js** file
 ```JSX
 import React from "react"; //Not required for React +17
 import {render} from "react-dom";
-import {StateProvider} from "cabinets-react";
+import {StateProvider} from "kabinets-react";
 import {counterStore, commentStore } from "./AppStores.js";
 import Counter from "./Counter.js";
 import Comments from "./Comments.js";
@@ -437,7 +437,7 @@ File **Counter.js**
 ```JSX
 import React from "react"; //Not required from React +17
 //#1
-import {useStoreHook} from "cabinets-react";
+import {useStoreHook} from "kabinets-react";
 
 export default function Counter(){
 
@@ -458,7 +458,7 @@ File **CounterMessage.js**
 
 ```JSX
 import React from "react";
-import { useStoreHook } from "cabinets-react";
+import { useStoreHook } from "kabinets-react";
  
 export default function CounterMessage() {
   //#1
@@ -486,7 +486,7 @@ export default function CounterMessage() {
 
 ```JSX
 import React, { useState } from "react"; //Not required from React +17
-import { useStoreHook } from "cabinets-react";
+import { useStoreHook } from "kabinets-react";
 import Comment from "./Comment.js";
 
 export default function Comments() {
@@ -546,9 +546,118 @@ can be done.
 
 
 ### Interceptors: Executing code after mappings are done  prior reducer is called
-Todo...
+Interceptors are functions that are called after Maps are executed but prior
+reducer to be invoked.
+
+They allows to do simple operations like logging, or save state & payload to
+localStorage or even modify both, state & payload. You can think of Interceptors
+like a Map function on steroides.
+
+You can define interceptor for specific operations or for all
+just defining the **def** Interceptor.
+
+examples:
+
+```javascript
+const counterStore = {
+    name: "counter",
+    initState: 10,
+    operations: {
+        increment: (state, payload) => state + payload,
+        decrement: (state, payload) => state - payload
+     },
+    interceptors:{
+        increment: (state, payload)=>{
+            console.log(`Increment: current: ${state} inc. value: ${payload}`);
+        },
+        decrement: (state, payload)=>{
+            if( (state - payload) < 0 ){
+                return 0;
+            }
+            return {state, payload};
+        }
+    }
+}
+
+```
+
+Or if you want to intercept all operations in a particular stores just use **def** as interceptor:
 
 
+```javascript
+const counterStore = {
+    name: "counter",
+    initState: 10,
+    operations: {
+        increment: (state, payload) => state + payload,
+        decrement: (state, payload) => state - payload
+     },
+    interceptors:{
+        def: (state, payload, ctx)=>{
+            console.log(`${ctx.reducer}, current state: ${state} payload: ${payload}`);
+        }
+    }
+}
+
+```
+Note: **def** interceptor will only intercepts those operations which do not have an interceptor.
 
 ### Lazy Actions: Modifying your store in an async away
-Todo...
+If your store must be mutates in an async way you could use
+Lazy Actions. Which basicaclly allows you to fire async actions.
+
+So, imagine you need to get 2 random numbers
+
+```javascript
+const counterStore = {
+  name: "counter",
+  initState: 0,
+  operations: {
+    increment: (state, payload) => {
+      state += payload;
+      return state;
+    },
+    decrement: (state, payload) => {
+      state -= payload;
+      return state;
+    }
+  },
+  lazyOperations: {
+    increment: async (state, payload) => {
+      state += payload;
+      return state;
+    },
+    decrement: async (state, payload) => {
+      state.counter -= payload;
+      return state;
+    }
+  }
+}
+
+it("Checks if lazy operations are working in combined-stores", async () => {
+  const { lazyActions, lazyFire, getState } = setupStore(counterStore);
+  //state.counter is 10...
+  const state = await lazyFire(lazyActions.increment(10));
+  expect(getState().counter).toBe(20);
+});
+
+```
+
+When to use Lazy Operations?
+
+If you want to fetch data or you need to invoke other async APIs, then you could use 
+Lazy Operations to mutate your state in an async way.
+
+However, there is also another approach:
+
+You could have all your state mutations Sync, as normal operations
+if you need to fetch some data or invoke some async API you can
+do it outsite your store's code  and when you have the data you
+can pass this data as payload while invoking an operation/reducer
+this will keep your store simple and cleaner!
+
+## That's all we have for now!
+If you need more examples, please check all test in the Repo.
+
+If you want to collaborate just fork it!
+

@@ -1,6 +1,6 @@
 import {useEffect} from "react";
-import { setupStore, combineStores } from "cabinets";
-import {CabinetsReactError}  from "./module.js";
+import { setupStore, combineStores } from "kabinets";
+import {KabinetsReactError}  from "./module.js";
 
 /**
  * The State Provider Component allows you to register
@@ -17,10 +17,10 @@ export default function StateProvider({store, stores, combinedName,  combine = f
     useEffect(() => {
         try {
              if (!stores && !store)
-                throw new CabinetsReactError("Error a store or stores must be specified");
+                throw new KabinetsReactError("Error a store or stores must be specified");
 
             if (stores && store)
-                throw new CabinetsReactError("You should use store for single" +
+                throw new KabinetsReactError("You should use store for single" +
                     " store setting up or stores for multiple but not both");
     
             if (store) {
@@ -30,7 +30,7 @@ export default function StateProvider({store, stores, combinedName,  combine = f
             } else if (stores && combine) {
         
                 if (!combinedName)
-                    throw new CabinetsReactError("combinedName prop cannot be undefined or empty while" +
+                    throw new KabinetsReactError("combinedName prop cannot be undefined or empty while" +
                         "combining stores, please, supply a name for stores " +
                         "combination.");
 
@@ -38,8 +38,7 @@ export default function StateProvider({store, stores, combinedName,  combine = f
                 combineStores(combinedName, ...setupStores);
             }
         } catch (e) {
-            console.error(e);
-            throw new CabinetsReactError("Error while resgestering Cabinets Stores", e);
+            throw new KabinetsReactError("Error while resgestering Cabinets Stores", e);
         }
 
         // eslint-disable-next-line
