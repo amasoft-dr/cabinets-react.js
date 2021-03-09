@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from 'enzyme';
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { StateProvider, CabinetsReactError } from "../module.js";
+import { StateProvider, CabinetsReactError } from "../src/module.js";
 import { counterStore } from "./CounterStore.js";
 import { commentsStore, commentsStore2 } from "./CommentsStore.js";
 import { useStore } from "cabinets";

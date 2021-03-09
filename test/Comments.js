@@ -1,5 +1,5 @@
 import React, { useState } from "react"; //Not required from React +17
-import { useStoreHook } from "../module.js";
+import { useStoreHook } from "../src/module.js";
 import Comment from "./Comment.js";
 
 export default function Comments() {

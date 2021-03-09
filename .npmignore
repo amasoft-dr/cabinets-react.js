@@ -1,3 +1,5 @@
-src
+.github
+test
 webpack.config.json
 node_modules
+coverage

@@ -1,6 +1,6 @@
 import React from "react"; //Not required from React +17
 //#1
-import {useStoreHook} from "../module.js";
+import {useStoreHook} from "../src/module.js";
 
 export default function Counter2(){
 
