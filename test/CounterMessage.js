@@ -1,6 +1,5 @@
 import React from "react";
 import { useStoreHook } from "../src/module.js";
-
 export default function CounterMessage() {
 
   const { getState } = useStoreHook("counterStore");

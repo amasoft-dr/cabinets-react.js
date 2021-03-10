@@ -12,11 +12,14 @@ module.exports = {
     rules: [
       {
         test: /\.js?$/,
-        exclude: /(node_modules,src)/,
+        exclude: /(node_modules)/,
         use: 'babel-loader',
       },
     ],
   },
+  externals: {
+   react: 'commonjs react',
+ },
   resolve: {
     extensions: ['.js'],
   },

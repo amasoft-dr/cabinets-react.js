@@ -1,7 +1,6 @@
 import React from "react"; //Not required from React +17
 //#1
 import {useStoreHook} from "../src/module.js";
-
 export default function Counter2(){
 
     const {fire, actions, getState} = useStoreHook("appStore");

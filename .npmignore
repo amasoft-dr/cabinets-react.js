@@ -1,5 +1,9 @@
 .github
 test
-webpack.config.json
+src/module.js
+webpack.config.js
+babel.config.json
+jest.config.json 
 node_modules
 coverage
+*.tgz
