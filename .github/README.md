@@ -61,7 +61,6 @@ import Counter from "./Counter.js";
 function App(){
   
   return(<>
-   /*#3*/
    <StateProvider store={counterStore} />
    <Counter />
    
@@ -155,9 +154,9 @@ function App(){
   
   return(<>
    <StateProvider store={counterStore} />
-   /*#1*/
+  
    <CounterMessage />
-   /*#2*/
+   
    <Counter />
    
   </>);
@@ -244,7 +243,7 @@ import Comments from "./Comments.js";
 function App(){
   
   return(<>
-  /*#1*/
+   
    <StateProvider stores={[counterStore, commentStore]} />
    <CounterMessage />
    <Counter />
@@ -413,7 +412,7 @@ import Comments from "./Comments.js";
 function App(){
   
   return(<>
-  /*#1*/
+ 
    <StateProvider stores={[counterStore, commentStore]} combine={true} combinedName="appStore" />
    <CounterMessage />
    <Counter />
