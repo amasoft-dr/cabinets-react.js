@@ -42,7 +42,7 @@ const counterStore = {
     }
 } 
 
-export counterStore;
+export {counterStore};
 
 ```
 
@@ -612,16 +612,6 @@ So, imagine you need to get 2 random numbers
 const counterStore = {
   name: "counter",
   initState: 0,
-  operations: {
-    increment: (state, payload) => {
-      state += payload;
-      return state;
-    },
-    decrement: (state, payload) => {
-      state -= payload;
-      return state;
-    }
-  },
   lazyOperations: {
     increment: async (state, payload) => {
       state += payload;
