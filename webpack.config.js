@@ -19,6 +19,7 @@ module.exports = {
   },
   externals: {
    react: 'commonjs react',
+   kabinets:'commonjs2 kabinets'
  },
   resolve: {
     extensions: ['.js'],
