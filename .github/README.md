@@ -5,6 +5,11 @@ Please, feel free to explore [kabinets.js](https://github.com/amasoft-dr/kabinet
 
 ### Managing Global State in React using kabinets
 
+#### CodeSandbox Kabinets-react.js examples
+1.  [Using Simple store](https://codesandbox.io/s/wonderful-mestorf-ob5tq)
+2.  [Using multiple stores](https://codesandbox.io/s/priceless-hill-fg4t4?file=/src/App.js)
+3.  [Combining Multiple Stores](https://codesandbox.io/s/delicate-morning-ri1xt?file=/src/App.js)
+
 Kabinets-react.js is a react state management library that is designed with simplicity in mind
 you don't need to configure anything, just add the dependency to your project and start using it!.
 
