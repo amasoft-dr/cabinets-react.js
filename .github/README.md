@@ -34,15 +34,16 @@ file: **CounterStore.js**
 ```javascript
 
 const counterStore = {
-    name: "counterStore",
-    initState: 0,
-    operations: {
-        increment: (state, payload) => state + payload,
-        decrement: (state, payload) => state - payload
-    }
-} 
+  name: "counterStore",
+  initState: 0,
+  operations: {
+    increment: (state, payload) => state + payload,
+    decrement: (state, payload) => state - payload
+  }
+};
 
-export {counterStore};
+export { counterStore };
+
 
 ```
 
@@ -82,19 +83,23 @@ Let's see the code for **Counter.js** component.
 ```JSX
 import React from "react"; //Not required from React +17
 //#1
-import {useStoreHook} from "kabinets-react";
+import { useStoreHook } from "kabinets-react";
 
-export default function Counter(){
+export default function Counter() {
+  const { fire, actions, getState } = useStoreHook("appState", ["counter"]);
 
-    const {fire, actions, getState} = useStoreHook("counterStore");
-    
-    return(<>
-          <h3>Current Value: {getState()}</h3>
-          <button id="inc" onClick={(e)=>{ fire(actions.increment(1) ); e.preventDefault(); } } >Increment by 1</button>
-          <button id="dec" onClick={(e)=>{ fire(actions.decrement(1) ); e.preventDefault(); }} >Decrement by 1</button>
-    </>);
+  return (
+    <>
+      <h3>Current Value: {getState().counter}</h3>
+      <button onClick={(e) => {fire(actions.increment(1));  e.preventDefault(); }}  >
+        Increment by 1
+      </button>
+      <button onClick={(e) => {fire(actions.decrement(1)); e.preventDefault(); }} >
+        Decrement by 1
+      </button>
+    </>
+  );
 }
-
 
 ```
 
@@ -130,9 +135,9 @@ export default function CounterMessage() {
 
       || getState() > 10 && <h1>You just warm up. We have {getState()}, Click Please</h1>
 
-      || getState() > 1 && <h1>Nice, we have now {getState()} Clicks!</h1>
+      || getState() > 0 && <h1>Nice, we have now {getState()} Clicks!</h1>
 
-      || getState() == 0 && <h1>Don't be shy, please click!</h1>}
+      || getState() === 0 && <h1>Don't be shy, please click!</h1>}
 
   </>);
 }
@@ -153,12 +158,11 @@ import CounterMessage from "./CounterMessage.js";
 function App(){
   
   return(<>
-   <StateProvider store={counterStore} />
-  
-   <CounterMessage />
-   
-   <Counter />
-   
+
+       <StateProvider store={counterStore} />
+       <Counter />
+       <CounterMessage />
+
   </>);
 }
 
@@ -184,36 +188,38 @@ Let's say we want to store our anonymous comments and have a counter in our appl
 Let's define our **AppStores.js**
 
 ```javascript
-
 const counterStore = {
-    name: "counter",
-    initState: 10,
-    operations: {
-        increment: (state, payload) => state + payload,
-        decrement: (state, payload) => state - payload
-     }
-}
+  name: "counterStore",
+  initState: 10,
+  operations: {
+    increment: (state, payload) => state + payload,
+    decrement: (state, payload) => state - payload
+  }
+};
 
 const commentsStore = {
-    name: "commentStore",
-    initState: [],
-    operations: {
-        comment: (state, comment) =>  [...state, comment],
-        removeComent: (state, id) => state.filter(comment => comment.id !== id)
-     },
-     maps: {
-       //#1
-        comment: (state, payload) => {
-        //Converting simple String for comment reducer, into a msg object to be passed to the
-        //comment reducer.
-        const id = [...payload].map(c => c.charCodeAt(0) ).join("") + "_" + new Date().getTime();
-        return {msg:payload, id, date: new Date() } 
-       }
-     }
-     
-}
+  name: "commentsStore",
+  initState: [],
+  operations: {
+    comment: (state, comment) => [...state, comment],
+    removeComment: (state, id) => state.filter((comment) => comment.id !== id)
+  },
+  maps: {
+    //#1
+    comment: (state, payload) => {
+      //Converting simple String for comment reducer, into a msg object to be passed to the
+      //comment reducer.
+      const id =
+        [...payload].map((c) => c.charCodeAt(0)).join("") +
+        "_" +
+        new Date().getTime();
+      return { msg: payload, id, date: new Date() };
+    }
+  }
+};
 
-export {counterStore, commentsStore};
+export { counterStore, commentsStore };
+
 
 ```
 
@@ -245,8 +251,8 @@ function App(){
   return(<>
    
    <StateProvider stores={[counterStore, commentStore]} />
-   <CounterMessage />
    <Counter />
+   <CounterMessage />
    <Comments />
    
   </>);
@@ -261,35 +267,48 @@ render(<App />, document.querySelector("#react-root") );
 
 **Comments.js** file
 
-
 ```JSX
-import React, { useState } from "react"; //Not required from React +17
+import React, { useState } from "react";
 import { useStoreHook } from "kabinets-react";
 import Comment from "./Comment.js";
 
 export default function Comments() {
+  const { fire, actions, getState } = useStoreHook("commentsStore");
+  const [commentMsg, setCommentMsg] = useState();
 
-    const { fire, actions, getState } = useStoreHook("commentsStore");
-    const [commentMsg, setCommentMsg] = useState();
+  return (
+    <>
+      <h3>Please leave your comment anonymously </h3>
 
+      <form
+        onSubmit={(e) => {
+          fire(actions.comment(commentMsg));
+          setCommentMsg("");
+          e.preventDefault();
+        }}
+      >
+        <label htmlFor="comment">Leave a comment</label>
+        <input
+          type="text"
+          size="50"
+          name="comment"
+          value={commentMsg}
+          onChange={(e) => setCommentMsg(e.target.value)}
+        />
+        <hr />
+        <input id="submit" type="submit" value="Leave a comment" />
+      </form>
 
-    return (<>
-        <h3>Please leave your comment anonymously </h3>
-
-        <form onSubmit={() => fire(actions.comment(commentMsg)) } >
-            <label htmlFor="comment">Leave a comment</label>
-            <input type="text" name="comment" onChange={(e) => setCommentMsg(e.target.value)} />
-            <hr />
-            <input id="submit" type="submit" value="Submit" />
-        </form>
-
-        <h2>Comments</h2>
-        {getState()
-            .map(comment => <Comment comment={comment} key={comment.id}
-                onDelete={ () => fire(actions.removeComment(comment.id)) } />) 
-       }
-
-    </>);
+      <h2>Comments({getState() && getState().length})</h2>
+      {getState().map((comment) => (
+        <Comment
+          comment={comment}
+          key={comment.id}
+          onDelete={() => fire(actions.removeComment(comment.id))}
+        />
+      ))}
+    </>
+  );
 }
 
 ```
@@ -298,19 +317,21 @@ export default function Comments() {
 ```JSX
 import React from "react"; //Not required from React +17
 
-export default function Comment({comment, onDelete}) {
-
-    return (
-        <div>
-            <p>
-                {comment.msg}
-            </p>
-            <b>{comment.date.toString()}</b>
-            <a onClick={(e) => { e.preventDefault(); onDelete(); }}>Remove comment</a>
-            <hr/>
-        </div >
-    );
+export default function Comment({ comment, onDelete }) {
+  return (
+    <div>
+      <p>
+        {comment.msg}
+        <b>{comment.date.toLocaleString()}</b>
+      </p>
+      <button onClick={(e) => { e.preventDefault(); onDelete(); }} >
+        Delete
+      </button>
+      <hr />
+    </div>
+  );
 }
+
 
 ```
 
@@ -352,52 +373,56 @@ when using react to use **<StateProvider />** Component to set up and combine yo
 ```javascript
 
 const counterStore = {
-    name: "counter",
-    initState: 10,
-    operations: {
-        increment: (state, payload) => {
-          state.counter = state.counter + payload;
-          return {...state};
-        },
-        decrement: (state, payload) => {
-           state.counter = state.counter + payload;
-           return {...state};
-        }
-     }
-}
+  name: "counter",
+  initState: 10,
+  operations: {
+    increment: (state, payload) => {
+      state.counter = state.counter + payload;
+      return { ...state };
+    },
+    decrement: (state, payload) => {
+      state.counter = state.counter + payload;
+      return { ...state };
+    }
+  }
+};
 
-export {counterStore};
+export { counterStore };
+
 ```
 
 
 **CommentsStore.js** file
 
 ```javascript
+//helper function
+const stringId = (str) =>
+  [...str].map((c) => c.charCodeAt(0)).join("") + "_" + new Date().getTime();
+
 const commentsStore = {
-    name: "comments",
-    initState: [],
-    operations: {
-        comment: (state, comment) => {
-          state.comments = [...state.comments, comment];
-          return {...state};
-        },
-        removeComent: (state, id) => {
-          state.comments = state.comments.filter(comment => comment.id !== id)
-          return {...state};
-        }
-     },
-     maps: {
-       //#1
-       comment: (state, payload) => {
-        //Converting simple String for comment reducer, into a comment object to be passed to the
-        //comment reducer.
-        const id = [...payload].map(c => c.charCodeAt(0) ).join("") + "_" + new Date().getTime();
-        return {msg:payload, id, date: new Date() } 
-       }
-     }
-     
-}
-export {commentsStore};
+  name: "comments",
+  initState: [],
+  operations: {
+    comment: (state, comment) => {
+      state.comments = [...state.comments, comment];
+      return { ...state };
+    },
+    removeComment: (state, payload) => {
+      state.comments = state.comments.filter(
+        (comment) => comment.id !== payload
+      );
+      return { ...state };
+    }
+  },
+  maps: {
+    comment: (state, comment) => {
+      return { msg: comment, id: stringId(comment), date: new Date() };
+    }
+  }
+};
+
+export { commentsStore };
+
 ```
 Now let's combine them in the **App.js** file
 
@@ -413,10 +438,15 @@ function App(){
   
   return(<>
  
-   <StateProvider stores={[counterStore, commentStore]} combine={true} combinedName="appStore" />
-   <CounterMessage />
-   <Counter />
-   <Comments />
+      <StateProvider
+            stores={[counterStore, commentsStore]}
+            combine={true}
+            combinedName="appState"
+        />
+
+      <Counter />
+      <CounterMessage />
+      <Comments />
    
   </>);
 }
@@ -436,19 +466,23 @@ File **Counter.js**
 ```JSX
 import React from "react"; //Not required from React +17
 //#1
-import {useStoreHook} from "kabinets-react";
+import { useStoreHook } from "kabinets-react";
 
-export default function Counter(){
+export default function Counter() {
+  const { fire, actions, getState } = useStoreHook("appState", ["counter"]);
 
-    const {fire, actions, getState} = useStoreHook("appStore");
-    
-    return(<>
-      <h3>Current Value: {getState().counter} </h3>
-      <button onClick={(e)=>{ fire(actions.increment(1) ); e.preventDefault(); } } >Increment by 1</button>
-      <button  onClick={(e)=>{ fire(actions.decrement(1) ); e.preventDefault(); } }>Decrement by 1</button>
-    </>);
+  return (
+    <>
+      <h3>Current Value: {getState().counter}</h3>
+      <button onClick={(e) =>{fire(actions.increment(1));e.preventDefault();  }} >
+        Increment by 1
+      </button>
+      <button onClick={(e) => {fire(actions.decrement(1));e.preventDefault();}} >
+        Decrement by 1
+      </button>
+    </>
+  );
 }
-
 
 ```
 
@@ -461,75 +495,93 @@ import { useStoreHook } from "kabinets-react";
  
 export default function CounterMessage() {
   //#1
-  const { getState } = useStoreHook("counterStore");
+  const { getState } = useStoreHook("counterStore",["counter"]);
 
   return (<>
 
-    {getState().counter > 100 && <h1>We have {getState()} clicks we are getting rich</h1>
+    {getState() > 100 && <h1>We have {getState()} clicks we are getting rich</h1>
 
-      || getState().counter > 50 && <h1>Keep going, we have only {getState()} I want more clicks</h1>
+      || getState() > 50 && <h1>Keep going, we have only {getState()} I want more clicks</h1>
 
-      || getState().counter > 10 && <h1>You just warm up. We have {getState()}, Click Please</h1>
+      || getState() > 10 && <h1>You just warm up. We have {getState()}, Click Please</h1>
 
-      || getState().counter > 1 && <h1>Nice, we have now {getState()} Clicks!</h1>
+      || getState() > 0 && <h1>Nice, we have now {getState()} Clicks!</h1>
 
-      || getState().counter == 0 && <h1>Don't be shy, please click!</h1>}
+      || getState() === 0 && <h1>Don't be shy, please click!</h1>}
 
   </>);
 }
 
-```
 
+```
 
 **Comments.js** file
 
 ```JSX
-import React, { useState } from "react"; //Not required from React +17
+import React, { useState } from "react";
 import { useStoreHook } from "kabinets-react";
 import Comment from "./Comment.js";
 
 export default function Comments() {
+  const { fire, actions, getState } = useStoreHook("appState", ["comments"]);
+  const [commentMsg, setCommentMsg] = useState();
 
-    const { fire, actions, getState } = useStoreHook("commentsStore");
-    const [commentMsg, setCommentMsg] = useState();
+  return (
+    <>
+      <h3>Please leave your comment anonymously </h3>
 
+      <form
+        onSubmit={(e) => {
+          fire(actions.comment(commentMsg));
+          setCommentMsg("");
+          e.preventDefault();
+        }}
+      >
+        <label htmlFor="comment">Leave a comment</label>
+        <input
+          type="text"
+          size="50"
+          name="comment"
+          value={commentMsg}
+          onChange={(e) => setCommentMsg(e.target.value)}
+        />
+        <hr />
+        <input id="submit" type="submit" value="Leave a comment" />
+      </form>
 
-    return (<>
-        <h3>Please leave your comment anonymously </h3>
-
-        <form onSubmit={() => fire(actions.comment(commentMsg)) } >
-            <label htmlFor="comment">Leave a comment</label>
-            <input type="text" name="comment" onChange={(e) => setCommentMsg(e.target.value)} />
-            <hr />
-            <input id="submit" type="submit" value="Submit" />
-        </form>
-
-        <h2>Comments</h2>
-        {getState()
-            comments.map(comment => <Comment comment={comment} key={comment.id}
-                             onDelete={ () => fire(actions.removeComment(comment.id)) } />) 
-       }
-
-    </>);
+      <h2>Comments({getState().comments && getState().comments.length})</h2>
+      {getState().comments &&
+        getState().comments.map((comment) => (
+          <Comment
+            comment={comment}
+            key={comment.id}
+            onDelete={() => fire(actions.removeComment(comment.id))}
+          />
+        ))}
+    </>
+  );
 }
+
 ```
 
-**Comment.js** file remains the same, no changes at all.
+**Comment.js** is a stateless components so 
+file remains the same, no changes at all.
 ```JSX
 import React from "react"; //Not required from React +17
 
-export default function Comment({comment, onDelete}) {
-
-    return (
-        <div>
-            <p>
-                {comment.msg}
-            </p>
-            <b>{comment.date.toString()}</b>
-            <a onClick={(e) => { e.preventDefault(); onDelete(); }}>Remove comment</a>
-            <hr/>
-        </div >
-    );
+export default function Comment({ comment, onDelete }) {
+  return (
+    <div>
+      <p>
+        {comment.msg}
+        <b>{comment.date.toLocaleString()}</b>
+      </p>
+      <button onClick={(e) => { e.preventDefault(); onDelete(); }} >
+        Delete
+      </button>
+      <hr />
+    </div>
+  );
 }
 
 ```

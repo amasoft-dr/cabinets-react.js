@@ -1,6 +1,6 @@
 {
   "name": "kabinets-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Kabinets-react is the simplest Global State Management for React.js",
   "main": "src/module.js",
   "scripts": {
@@ -26,10 +26,10 @@
   },
   "homepage": "https://github.com/andreidim/cabinets-react.js#readme",
   "peerDependencies": {
-   "react": ">=16.8.0"
-},
+    "react": ">=16.8.0"
+  },
   "dependencies": {
-    "kabinets": "^0.0.1"
+    "kabinets": "^0.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",

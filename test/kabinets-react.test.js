@@ -39,6 +39,12 @@ it('validates registered store by modifying state by clicking', () => {
     expect(counterWrapper2.find("h3").text()).toBe("Current Value: 99");
 });
 
+it('validates registering multiple stores more than once', () => {
+    mount(<StateProvider stores={[counterStore, commentsStore]} />);
+    mount(<StateProvider stores={[counterStore, commentsStore]} />);
+    
+})
+
 //Previous Counter store value was 99 according to previous step
 it('validates re-rendering on state mutations in multiple components', () => {
     mount(<StateProvider store={counterStore} />);
@@ -60,6 +66,8 @@ it('Validates component with states and nested compoents ', () => {
     const comWrapper = mount(<Comments />);
     comWrapper.find('#comment').simulate("change", { target: { value: "Hello I'm Dimitron, bye!" } });
     comWrapper.find("#form").simulate("submit");
+    //Testing the ability to ignore store registration if already exists
+    mount(<StateProvider store={commentsStore2} />);
     expect(comWrapper.exists("Comment")).toBe(true);
     expect(comWrapper.find("p").text().trim()).toBe("Hello I'm Dimitron, bye!");
     comWrapper.find("a").simulate("click");
@@ -75,6 +83,10 @@ it('validates if combining stores works', () => {
     const incBtnWrapper = c2.find("#inc");
     const decBtnWrapper = c2.find("#dec");
     Array.from({ length: 10 }, (x, i) => incBtnWrapper.simulate("click"));
+    //Testing Kabinets ability to not register an already registed store...
+    mount(<StateProvider stores={[counterStore, commentsStore]}
+        combine={true} combinedName="appStore" />);
+
     decBtnWrapper.simulate("click");
     const h3Value = c2.find("h3").text();
     expect(h3Value).toBe("Current Value: 19");

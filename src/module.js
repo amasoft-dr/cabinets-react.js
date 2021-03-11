@@ -43,6 +43,19 @@ function useStoreHook(storeName, deps) {
 function StateProvider({ store, stores, combinedName, combine = false }) {
 
     try {
+        if (store && useStore(store.name))
+            return null;
+
+        if (combinedName && useStore(combinedName))
+            return null;
+
+        if (stores && !combinedName && stores
+            .map(store => useStore(store.name))
+            .filter(store => store).length > 0)
+            return null;
+
+            
+
         if (!stores && !store)
             throw new KabinetsReactError("Error a store or stores must be specified");
 
