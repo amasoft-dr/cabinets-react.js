@@ -31,7 +31,7 @@ First thing is to define your store/stores.
 
 There are two ways to set up your stores
 
-1. The **kabinets.js** standard way, please [click here for more details](https://github.com/amasoft-dr/kabinets.js/blob/main/README.md#lets-code)
+1. The **kabinets.js** standard way, please [click here for more details](https://github.com/andreidim/kabinets.js)
 
 2. The **kabinets-react.js** way, let's see it:
 
