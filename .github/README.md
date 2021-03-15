@@ -91,11 +91,11 @@ import React from "react"; //Not required from React +17
 import { useStoreHook } from "kabinets-react";
 
 export default function Counter() {
-  const { fire, actions, getState } = useStoreHook("appState", ["counter"]);
+  const { fire, actions, getState } = useStoreHook("counterStore");
 
   return (
     <>
-      <h3>Current Value: {getState().counter}</h3>
+      <h3>Current Value: {getState()}</h3>
       <button onClick={(e) => {fire(actions.increment(1));  e.preventDefault(); }}  >
         Increment by 1
       </button>
