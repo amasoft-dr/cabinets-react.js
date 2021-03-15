@@ -1,7 +1,7 @@
 ## Kabinets-react.js is the simplest Global State Management for React.js
 ### Kabinets-react.js It's a binding to use kabinets.js in modern React.js
 
-Please, feel free to explore [kabinets.js](https://github.com/amasoft-dr/kabinets.js) the original library.
+Please, feel free to explore [kabinets.js](https://github.com/andreidim/kabinets.js) the original library.
 
 ### Managing Global State in React using kabinets
 
